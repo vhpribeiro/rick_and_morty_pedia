@@ -1,22 +1,67 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCharacter } from '../../actions/characters'
+import { fetchCharacters } from '../../actions/characters'
+import { fetchCharacter, clearCharacter } from '../../actions/character'
 import { Navbar, CharacterCard } from '../../components'
 
 class Home extends Component {
-    
+    constructor(props){
+        super(props)
+        this.state = {
+            characterName: ''
+        };
+    }
+
     componentDidMount(){
-        this.props.fetchCharacter();
+        this.props.fetchCharacters();
+    }
+
+    searchCharacter = (event) => {
+        event.preventDefault();
+        this.props.fetchCharacter(this.state.characterName);
+    }
+
+    clearCharacter = (event) => {
+        event.preventDefault();
+        this.props.clearCharacter();
+        this.setState({
+            characterName: ''
+        })
+    }
+
+    onChange = (event) =>{
+        this.setState({
+            characterName: event.target.value
+        });
     }
 
     render() {
         let characters = this.props.characters != null ? this.props.characters.results : [];
+        let selectedCharacter = this.props.character != null ? this.props.character.results : null;
         return (
             <div>
                 <Navbar/>
                 <section className="container">
+                    <div className="form-row">
+                        <div className="col-md-10">
+                        <input type="text" className="form-control" value={this.state.characterName} onChange={this.onChange}/>
+                        </div>
+                        <div className="col-md-1">
+                            <button className="btn btn-primary" onClick={this.searchCharacter} type="button">Search</button>
+                        </div>
+                        <div className="col-md-1">
+                            <button className="btn btn-primary" onClick={this.clearCharacter} type="button">Clear</button>
+                        </div>
+                    </div>
+                </section>
+                <section className="container">
                     <div className="row">
-                        {characters.map(character => (
+                        {selectedCharacter != null ?
+                         selectedCharacter.map(character => (
+                            <div className="col-md-4" key={character.id}>
+                                <CharacterCard character={character}/>
+                         </div>)) :
+                          characters.map(character => (
                             <div className="col-md-4" key={character.id}>
                                 <CharacterCard character={character}/>
                             </div>
@@ -29,7 +74,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-    characters: state.characters
+    characters: state.characters,
+    character: state.character
 });
 
-export default connect(mapStateToProps, {fetchCharacter})(Home);
+export default connect(mapStateToProps, {fetchCharacters, fetchCharacter, clearCharacter})(Home);

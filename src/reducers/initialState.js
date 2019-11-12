@@ -1,3 +1,4 @@
 export default {
-    characters: null
+    characters: null,
+    character: null
 }

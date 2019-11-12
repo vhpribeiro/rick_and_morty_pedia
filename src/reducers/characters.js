@@ -1,9 +1,9 @@
-import { FETCH_CHARACTER } from '../actions/types'
+import { FETCH_CHARACTERS } from '../actions/types'
 import initialState from './initialState'
 
 export default (state = initialState.characters, action) => {
     switch(action.type) {
-        case FETCH_CHARACTER:
+        case FETCH_CHARACTERS:
             return {
                 ...action.characters
             }
