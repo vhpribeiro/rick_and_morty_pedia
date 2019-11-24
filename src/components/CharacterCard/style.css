@@ -1,0 +1,9 @@
+.characters-card{
+    margin-top: 24px;
+}
+
+.characters-card__button{
+    color: #fff !important;
+    background-color: #8BCF21 !important;
+    border-color: #8BCF21 !important;
+}

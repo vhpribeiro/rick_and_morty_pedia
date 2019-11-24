@@ -1,0 +1,19 @@
+.search-form__container{
+    border-radius: 10px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background-color: #926f44;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.characters__container{
+    background-color: #24325fff !important;
+    border-radius: 10px;
+}
+
+.search-form__button{
+    color: #fff !important;
+    background-color: #8BCF21 !important;
+    border-color: #8BCF21 !important;
+}

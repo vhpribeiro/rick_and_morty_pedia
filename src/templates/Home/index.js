@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchCharacters } from '../../actions/characters'
 import { fetchCharacter, clearCharacter } from '../../actions/character'
 import { Navbar, CharacterCard } from '../../components'
+import './style.css'
 
 class Home extends Component {
     constructor(props){
@@ -29,7 +30,7 @@ class Home extends Component {
         })
     }
 
-    onChange = (event) =>{
+    handleChange = (event) =>{
         this.setState({
             characterName: event.target.value
         });
@@ -41,20 +42,20 @@ class Home extends Component {
         return (
             <div>
                 <Navbar/>
-                <section className="container">
+                <section className="container search-form__container">
                     <div className="form-row">
                         <div className="col-md-10">
-                        <input type="text" className="form-control" value={this.state.characterName} onChange={this.onChange}/>
+                        <input type="text" className="form-control" value={this.state.characterName} onChange={this.handleChange}/>
                         </div>
                         <div className="col-md-1">
-                            <button className="btn btn-primary" onClick={this.searchCharacter} type="button">Search</button>
+                            <button className="btn search-form__button" onClick={this.searchCharacter} type="button">Search</button>
                         </div>
                         <div className="col-md-1">
-                            <button className="btn btn-primary" onClick={this.clearCharacter} type="button">Clear</button>
+                            <button className="btn search-form__button" onClick={this.clearCharacter} type="button">Clear</button>
                         </div>
                     </div>
                 </section>
-                <section className="container">
+                <section className="container characters__container">
                     <div className="row">
                         {selectedCharacter != null ?
                          selectedCharacter.map(character => (

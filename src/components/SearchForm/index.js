@@ -1,18 +1,20 @@
 import React from 'react';
+import './style.css';
 
-const SearchForm = (onSubmit, onChange, value) => {
+const SearchForm = ({onChange, value, actionButtonOne, actionButtonTwo}) => {
   return (
     <section className="container">
-        <form onSubmit={onSubmit}>
-            <div className="form-row">
-                <div className="col-md-11">
-                    <input type="text" className="form-control" value={value} onChange={onChange}/>
-                </div>
-                <div className="col-md-1">
-                    <input className="btn btn-primary" type="submit" value="Search"/>
-                </div>
+        <div className="form-row">
+            <div className="col-md-10">
+            <input type="text" className="form-control" value="Rick" onChange={onChange}/>
             </div>
-        </form>
+            <div className="col-md-1">
+                <button className="btn btn-primary" onClick={actionButtonOne} type="button">Search</button>
+            </div>
+            <div className="col-md-1">
+                <button className="btn btn-primary" onClick={actionButtonTwo} type="button">Clear</button>
+            </div>
+        </div>
     </section>
   );
 }
