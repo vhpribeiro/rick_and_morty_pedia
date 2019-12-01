@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import { fetchCharacters } from '../../actions/characters'
 
-const Pagination = ({fetchCharacters}) => {
+const Pagination = ({fetchCharacters, characterName}) => {
   const [actualPage, setActualPage] = useState(1);
   const [maxPage, setMaxPage] = useState(actualPage + 2);
   const [minPage, setMinPage] = useState(actualPage);
@@ -17,7 +17,7 @@ const Pagination = ({fetchCharacters}) => {
       setMaxPage(actualPage + 3);
     }
     setActualPage(actualPage + 1);
-    fetchCharacters(actualPage + 1);
+    fetchCharacters(actualPage + 1, characterName);
   }
 
   const movePageBackward = (event) => {
@@ -28,7 +28,7 @@ const Pagination = ({fetchCharacters}) => {
       setMaxPage(actualPage - 1);
     }
     setActualPage(actualPage - 1);
-    fetchCharacters(actualPage - 1);
+    fetchCharacters(actualPage - 1, characterName);
   }
 
   return (
@@ -60,4 +60,8 @@ const Pagination = ({fetchCharacters}) => {
   )
 }
 
-export default connect(null, {fetchCharacters})(Pagination);
+const mapStateToProps = state => ({
+  characterName: !!state.character ? state.character.searchCharacter : ''
+});
+
+export default connect(mapStateToProps, {fetchCharacters})(Pagination);

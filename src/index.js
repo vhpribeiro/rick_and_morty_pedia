@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { Provider } from 'react-redux';
 
-import { Home } from './templates'
+import { Home, Character } from './templates'
+import { Navbar } from './components'
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,7 +16,13 @@ const rootElement = document.getElementById('root');
 
 ReactDOM.render(
     <Provider store={store}>
-        <Home />
+        <Router>
+            <Navbar />
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/character/:id" component={Character}/>
+            </Switch>
+        </Router>
     </Provider>
     , rootElement);
 

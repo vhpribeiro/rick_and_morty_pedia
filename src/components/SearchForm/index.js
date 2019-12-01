@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux'
-import { fetchCharacter, clearCharacter } from '../../actions/character'
+import { fetchCharacters } from '../../actions/characters'
+import { searchCharacter } from '../../actions/character';
 import './style.css';
 
-const SearchForm = ({fetchCharacter, clearCharacter}) => {
+const SearchForm = ({fetchCharacters, searchCharacter}) => {
   const [characterName, setCharacterName] = useState('');
 
   const handleChange = event => {
     setCharacterName(event.target.value);
   }
 
-  const searchCharacter = (event) => {
+  const searchCharacterForName = (event) => {
     event.preventDefault();
-    fetchCharacter(characterName);
+    fetchCharacters(1, characterName);
+    searchCharacter(characterName);
   }
 
   const clearSearchCharacter = (event) => {
     event.preventDefault();
-    clearCharacter();
-    setCharacterName('')
+    fetchCharacters();
+    setCharacterName('');
+    searchCharacter('');
 }
 
   return (
@@ -28,7 +31,7 @@ const SearchForm = ({fetchCharacter, clearCharacter}) => {
             <input type="text" className="form-control" value={characterName} onChange={handleChange}/>
             </div>
             <div className="col-md-1">
-                <button className="btn search-form__button" onClick={searchCharacter} type="button">Search</button>
+                <button className="btn search-form__button" onClick={searchCharacterForName} type="button">Search</button>
             </div>
             <div className="col-md-1">
                 <button className="btn search-form__button" onClick={clearSearchCharacter} type="button">Clear</button>
@@ -38,4 +41,8 @@ const SearchForm = ({fetchCharacter, clearCharacter}) => {
   );
 }
 
-export default connect(null, {fetchCharacter, clearCharacter})(SearchForm);
+const mapStateToProps = state => ({
+  searchCharacter: state.searchCharacter
+});
+
+export default connect(mapStateToProps, {fetchCharacters, searchCharacter})(SearchForm);
