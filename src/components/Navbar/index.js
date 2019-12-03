@@ -1,13 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './style.css'
 
 const Navbar = () => {
     return (
         <nav className="navbar navbar-light navbar__primary-color">
-            <a className="navbar-brand navbar__text-color" href="/">
-                <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" className="d-inline-block align-top" alt=""/>
+            <Link className="navbar-brand navbar__text-color" to="/">
+                <img src="rickandmorty.png" width="30" height="30" className="d-inline-block align-top" alt=""/>
                 Rick and Morty - Pedia
-            </a>
+            </Link>
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item ">
+                        <Link className="nav-link" to="/">Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#">Episodes</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     )
 }
