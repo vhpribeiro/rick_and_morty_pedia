@@ -25,4 +25,10 @@ const CharacterCard = ({character, fetchCharacter}) => {
     </div>
 )}
 
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchCharacter: (id) => dispatch(fetchCharacter(id))
+    }
+}
+
 export default connect(null, {fetchCharacter})(CharacterCard);

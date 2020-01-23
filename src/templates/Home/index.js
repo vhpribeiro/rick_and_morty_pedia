@@ -40,4 +40,10 @@ const mapStateToProps = state => ({
   characters: state.characters
 });
 
-export default connect(mapStateToProps, { fetchCharacters })(Home);
+const mapDispatchToProps = dispatch =>{
+  return {
+    fetchCharacters: (page, name) => dispatch(fetchCharacters(page, name))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -64,4 +64,10 @@ const mapStateToProps = state => ({
   characterName: !!state.character ? state.character.searchCharacter : ''
 });
 
-export default connect(mapStateToProps, {fetchCharacters})(Pagination);
+const mapDispatchToProps = dispatch =>{
+  return {
+    fetchCharacters: (page, name) => dispatch(fetchCharacters(page, name))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

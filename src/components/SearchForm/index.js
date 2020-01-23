@@ -45,4 +45,11 @@ const mapStateToProps = state => ({
   searchCharacter: state.searchCharacter
 });
 
-export default connect(mapStateToProps, {fetchCharacters, searchCharacter})(SearchForm);
+const mapDispatchToProps = dispatch =>{
+  return {
+    searchCharacter: (characterName) => dispatch(searchCharacter(characterName)),
+    fetchCharacters: (page, name) => dispatch(fetchCharacters(page, name))
+  }
+}
+  
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
