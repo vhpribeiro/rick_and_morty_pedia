@@ -1,5 +1,5 @@
-import { clearCharacter, searchCharacter, fetchCharacter } from '../../actions/character'
-import { FETCH_CHARACTER, CLEAR_CHARACTER, SEARCH_CHARACTER } from '../../actions/types'
+import { searchCharacter, fetchCharacter } from '../../actions/character'
+import { FETCH_CHARACTER, SEARCH_CHARACTER } from '../../actions/types'
 
 import moxios from 'moxios'
 import configureMockStore from 'redux-mock-store'
@@ -15,17 +15,6 @@ describe('Character Action', () => {
 
     afterEach(() => {
         moxios.uninstall();
-    })
-
-    it('should clear character search', () => {
-        const expectedResult = {
-            type: CLEAR_CHARACTER,
-            character: null
-        }
-    
-        const action = clearCharacter()
-    
-        expect(action).toEqual(expectedResult)
     })
     
     it('should search for a character', () => {

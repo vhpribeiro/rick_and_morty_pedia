@@ -1,14 +1,10 @@
 import character from '../../reducers/character'
 import initialState from '../../reducers/initialState'
-import { SEARCH_CHARACTER } from '../../actions/types'
+import { SEARCH_CHARACTER, FETCH_CHARACTER } from '../../actions/types'
 
 describe('Character Reducer', () => {
 
-    const currentState = {
-        characters: [{
-            id: 1,
-            name: 'Rick Sanchez'
-        }],
+    const currentCharacterState = {
         character: {
             id: 3,
             name: 'Morty Sanchez'
@@ -32,16 +28,29 @@ describe('Character Reducer', () => {
             searchCharacter: searchedCharacter
         }
         const expectedState = {
-            ...currentState,
+            ...currentCharacterState,
             searchCharacter: searchedCharacter
         }
 
-        const state = character(currentState, action)
+        const state = character(currentCharacterState, action)
         
         expect(state).toEqual(expectedState)
     })
 
-    it('should clear character value', () => {
-        
+    it('should fetch character value', () => {
+        const expectedState = {
+            id: 1,
+            name: 'Sam Sanchez',
+            status: 'Alive',
+            species: 'Human'
+        }
+        const action = {
+            type: FETCH_CHARACTER,
+            character: expectedState
+        }
+
+        const state = character(currentCharacterState, action)
+
+        expect(state).toEqual(expectedState)
     })
 })
