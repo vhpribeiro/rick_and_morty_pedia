@@ -9,6 +9,7 @@ const CharacterCard = ({character, fetchCharacter}) => {
     let history = useHistory();
     const handleClick = (event) => {
         event.preventDefault();
+        console.log(character.id)
         fetchCharacter(character.id);
         history.push(`/character/${character.id}`);
     } 
@@ -31,4 +32,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, {fetchCharacter})(CharacterCard);
+export default connect(null, mapDispatchToProps)(CharacterCard);

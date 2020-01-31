@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const fetchCharacter = (id) => async dispatch => {
     return axios.get(`https://rickandmortyapi.com/api/character/${id}`)
-    .then(response => dispatch({
+    .then((response) => dispatch({
         type: FETCH_CHARACTER,
         character: response.data
     }))

@@ -4,9 +4,7 @@ import initialState from './initialState'
 export default (state = initialState.characters, action) => {
     switch(action.type) {
         case FETCH_CHARACTERS:
-            return {
-                ...action.characters
-            }
+            return {...action.characters}
         default:
             return state
     }

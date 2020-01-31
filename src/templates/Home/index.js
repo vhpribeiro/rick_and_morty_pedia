@@ -17,7 +17,7 @@ class Home extends Component {
   }
 
   render() {
-    let characters = this.props.characters != null ? this.props.characters.results : [];
+    let characters = this.props.characters != null ? this.props.characters.results : []
     return (
       <div>
         <SearchForm />
